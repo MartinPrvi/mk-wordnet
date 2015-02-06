@@ -1,8 +1,8 @@
 #Macedonian WordNet
 ___
-->__Martin Ivanovski__, 
+__Martin Ivanovski__, 
 __Dimitar Venov__, 
-__Jovan Andonov__<-
+__Jovan Andonov__
 
 
 
