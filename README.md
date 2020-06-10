@@ -1,11 +1,8 @@
 #Macedonian WordNet
 ___
-__Martin Ivanovski__, 
-__Dimitar Venov__, 
+__Martin Ivanovski__,
+__Dimitar Venov__,
 __Jovan Andonov__
-
-
-##Abstract
 
 Living in a world striving to automate every fragment of our lives, we often encounter roadblocks in the process. This is mainly due to the vast complexity of human civilization, natural language(s) in particular. As we all know, computers are not known for their ability to deal with ambiguity. Every rule in every natural language has an exception and that exception has an exception and so on. To battle this we have taketh upon ourselves to enrich the toolbox for natural language processing by creating WordNet for the Macedonian language, without having to spend millions, or employ countless linguists and experts from every field and every subject.
 
@@ -14,7 +11,7 @@ Living in a world striving to automate every fragment of our lives, we often enc
 ##Method
 The way we want to achieve our goal is quite simple.
 
-1. Get an already established lexical database. 
+1. Get an already established lexical database.
    * WordNet (English)
 2. Translate all the synonym sets (synsets).
 3. Export an NLTK friendly format for later use.
@@ -40,15 +37,15 @@ On the right hand side there is a form populated with possible translations for 
 db.synsets=
         {
              'synset'     ,  # name(),   str,
-             'synset_name',  # '.'.join(synset.name().split('.')[:-2]).replace('_',' '), str,   
-             'offset'     ,  # offset(), int, int(8), synset_offset      
+             'synset_name',  # '.'.join(synset.name().split('.')[:-2]).replace('_',' '), str,
+             'offset'     ,  # offset(), int, int(8), synset_offset
              'lexname'    ,  # lexname(),str, map to int(2), lex_filenum
              'pos'        ,  # pos(),    str, str, ss_type
              'lemma_names',  # lemma_names(), list formatted..
              'pointers'   ,  # for each type seperate key
              'gloss'      ,  # description()
              'sentences'  ,  # list
-             
+
              'translated_lemma_names': [{lemma_names_mk}],
              'GT_gloss': '',
              'frequency': int(),
@@ -93,8 +90,8 @@ For our database we have used mongodb which is document database. For every syns
     '%s' : substance_meronyms         #       y is_part_of x where x is the synset
     '%p' : part_meronyms              #       y is_part_of x where x is the synset
     '='  : attributes                 #       is base for these attributes
-    '+'  : drf                        #       Derivationally related form 
-    ';c' : topic_domains              #       Domain of synset - TOPIC 
+    '+'  : drf                        #       Derivationally related form
+    ';c' : topic_domains              #       Domain of synset - TOPIC
     '-c' : members_of_topic_domain    #       Other synsets of topic domain
     ';r' : region_domains             #       Domain of synset - REGION
     '-r' : members_of_region_domain   #       Other synsets of region domain
@@ -110,8 +107,8 @@ For our database we have used mongodb which is document database. For every syns
     '>'  : causes                     #       causes
     '^'  : also_see                   #       \
     '$'  : verb_groups                #       verb group
-    '+'  : drf                        #       Derivationally related form 
-    ';c' : topic_domains              #       Domain of synset - TOPIC 
+    '+'  : drf                        #       Derivationally related form
+    ';c' : topic_domains              #       Domain of synset - TOPIC
     ';r' : region_domains             #       Domain of synset - REGION
     ';u' : usage_domains              #       Domain of synset - USAGE
 ```
@@ -160,7 +157,7 @@ Later we experimented with 2 algorithms
 def calculate_frequency_v2():
   for i, synset in enumerate(synsets):
     translated_lemmas = {}
-    
+
     for lemma_list in synset['translated_lemma_names']:
       for lemma in lemma_list:
         translated_lemmas[lemma] = translated_lemmas.get(lemma, 0) + 1
@@ -207,12 +204,12 @@ def calculate_frequency():
 
   for i, synset in enumerate(synsets):
     first = synset['translated_lemma_names'][0]
-    
+
     if len(first) > 0:
       trans = first[0]
     else:
       trans = ''
-    
+
     trans = trans.split('_')
     for m, t in enumerate(trans):
       trans[m] = wfl.get(t, t)
@@ -249,50 +246,50 @@ All the lines in this files are in the following format:
 synset_offset
 
 	Current byte offset in the file represented as an 8 digit decimal integer.
-	
+
 lex_filenum
 
 	Two digit decimal integer corresponding to the lexicographer file name containing the synset. See http://wordnet.princeton.edu/wordnet/man/lexnames.5WN.html for more info.
-	
+
 ss_type
 
 	One character code indicating the synset type:
-	n    NOUN 
-	v    VERB 
-	a    ADJECTIVE 
-	s    ADJECTIVE SATELLITE 
-	r    ADVERB 
+	n    NOUN
+	v    VERB
+	a    ADJECTIVE
+	s    ADJECTIVE SATELLITE
+	r    ADVERB
 
 w_cnt
 
 	Two digit hexadecimal integer indicating the number of words in the synset.
-	
+
 word
 
 	Unicode form of a word as entered in the synset by the lexicographer, with spaces replaced by underscore characters (_ ). The text of the word is case sensitive.
-	
+
 lex_id
 
 	One digit hexadecimal integer that, when appended onto lemma , uniquely identifies a sense within a lexicographer file. lex_id numbers usually start with 0 , and are incremented as additional senses of the word are added to the same file.
-	
+
 p_cnt
 
 	Three digit decimal integer indicating the number of pointers from this synset to other synsets. If p_cnt is 000 the synset has no pointers.
-	
+
 ptr
 
 	A pointer from this synset to another. ptr is of the form:
-		pointer_symbol  synset_offset  pos  source/target 
+		pointer_symbol  synset_offset  pos  source/target
 	where synset_offset is the byte offset of the target synset in the data file corresponding to pos. source/target is left here for compatibility reasons. See above for pointer symbols.
-	
+
 gloss
 
 	Each synset contains a gloss. A gloss is represented as a vertical bar (| ), followed by a text string that continues until the end of the line. The gloss may contain a definition, one or more example sentences, or both.
-	
+
 ####index.pos files
 All the lines in this files are in the following format:
-	
-	lemma  pos  synset_cnt  p_cnt  [ptr_symbol...]  sense_cnt  tagsense_cnt   synset_offset  [synset_offset...] 
+
+	lemma  pos  synset_cnt  p_cnt  [ptr_symbol...]  sense_cnt  tagsense_cnt   synset_offset  [synset_offset...]
 
 lemma
 
