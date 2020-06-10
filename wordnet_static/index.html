@@ -1,0 +1,123 @@
+<!DOCTYPE html><html><head>
+  <link href="css/stylesheet.css" rel="stylesheet" type="text/css"><meta charset="utf-8">
+</head>
+<body>
+  <header>
+    
+    <div class="logo serif"></div>
+    <nav>
+    </nav>
+    <div class="auth">
+    </div>
+  </header>
+  
+  <section>
+    <div class="synset_info serif">
+      <div id="ripped">
+      </div>
+      
+      <h1>movie</h1>
+      <h2>noun</h2>
+      
+      <p class="gloss">|a form of entertainment that enacts a story by sound and a sequence of images giving the illusion of continuous movement|</p>
+      
+      <ul class="sentences">
+        <li>they went to a movie every Saturday night</li>
+        <li>the film was shot on location</li>
+      </ul>
+      
+      <p class="lemma_names"><span>movie</span>, <span>film</span>, <span>picture</span>, <span>moving picture</span>, <span>moving-picture show</span>, <span>motion picture</span>, <span>motion-picture show</span>, <span>picture show</span>, <span>pic</span>, <span>flick</span></p>
+      
+      
+      <div id="bottom">
+      </div>
+    </div>
+    
+    <div class="right_panel">
+      <form method="POST">
+      <div class="translate_lemmas">
+        <div>
+          <h1>movidasdsadasdasdasdase</h1>
+          <input type="radio" name="0" value="0">филм
+          <br>
+          <input type="radio" name="0" value="1">кино
+        </div>
+        <div>
+          <h1>movie</h1>
+          <input type="radio" name="1" value="0" id="филм.1"><label for="филм.1">филм</label>
+          <br>
+          <input type="radio" name="1" value="1"><label for="кино.1">кино</label>
+          <br>
+          <input type="radio" name="1" value="0">филм
+          <br>
+          <input type="radio" name="1" value="0" id="филм.1"><label for="филм.1">филм</label>
+          <br>
+          <input type="radio" name="1" value="1"><label for="кино.1">кино</label>
+          <br>
+          <input type="radio" name="1" value="0">филм
+          <br>
+          <input type="radio" name="1" value="0" id="филм.1"><label for="филм.1">филм</label>
+          <br>
+          <input type="radio" name="1" value="1"><label for="кино.1">кино</label>
+          <br>
+          <input type="radio" name="1" value="0">филм
+          <br>
+          <input type="radio" name="1" value="0" id="филм.1"><label for="филм.1">филм</label>
+          <br>
+          <input type="radio" name="1" value="1"><input type="text" placeholder="друго">
+          
+        </div>
+        <div>
+          <h1>movie</h1>
+        </div>
+        <div>
+          <h1>movie</h1>
+        </div>
+        <div>
+          <h1>movie</h1>
+        </div>
+        <div>
+          <h1>movie</h1>
+        </div>
+        <div>
+          <h1>movie</h1>
+        </div>
+        <div>
+          <h1>movie</h1>
+        </div>
+        <div>
+          <h1>movie</h1>
+        </div>
+
+      </div>
+      <script>
+      function add_sentence(t){
+        inputs = t.parentNode.getElementsByTagName('input')
+        
+        if (inputs[inputs.length-1].value!=''){
+          t.parentNode.innerHTML+=('<input type="text" name="sentence.'+(inputs.length)+'" value="">')
+        }
+      }
+      </script>
+      <div class="translate_optional">
+        <div>
+          <h1>gloss</h1>
+          <textarea name="gloss"></textarea>
+        </div>
+        <div>
+          <div>
+            <h1>sentences</h1>
+            <input type="text" name="sentence.0" value=""><span onclick="add_sentence(this)">+</span>
+          </div>
+
+          
+        </div>
+      </div>
+    </form>
+    </div>
+    
+  </section>
+  
+</body>
+
+</html>
